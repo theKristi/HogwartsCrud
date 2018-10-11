@@ -14,8 +14,7 @@
   },
   "dependencies": {
     "express": "^4.16.2",
-    "npm": "^6.4.1",
-    "yarn": "^1.10.1"
+    "npm": "^6.4.1"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"
