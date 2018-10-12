@@ -4,15 +4,15 @@ const api = {};
 
 
     
-    api.getAll = (HogwartsStudents) => (req, res) => 
+    api.getAll = (client) => (req, res) => 
     {
-            HogwartsStudents.find((error, student) => 
-            {
-              if(error) return res.status(400).json(error);
-              res.status(200).json(student);
-              return true;  
-            
-            })
+    //const collection = client.db("WizardingWorld").collection("HogwartsStudents");
+   
+      let myres=client.find();
+      console.log(myres);
+
+      return true;
+
     }
 
 module.exports = api

@@ -3,8 +3,9 @@ module.exports = (mongoose, config) => {
 	mongoose.Promise = Promise;
 	
 	mongoose.connect(config.database, {
-		promiseLibrary: global.Promise
-	});
+		promiseLibrary: global.Promise,
+		useNewUrlParser: true
+	  });
 	database.on('error', error => console.log(`Connection to Hogwarts database failed: ${error}`));
 	
 	database.on('connected', () => console.log('Connected to Hogwarts database'));

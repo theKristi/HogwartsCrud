@@ -12,6 +12,7 @@ const express = require('express'),
 	  app.use(express.static('.'));
 	  app.use(bodyParser.urlencoded({extended: true}));
 	  app.use(bodyParser.json());
+	  app.use(morgan('dev'));
 	  app.use(cors());
 	 
 	  
