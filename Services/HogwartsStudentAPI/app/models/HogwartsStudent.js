@@ -27,4 +27,4 @@ const Schema= mongoose.Schema({
     
 });
 
-mongoose.model('Student', Schema);
+mongoose.model('HogwartsStudent', Schema);

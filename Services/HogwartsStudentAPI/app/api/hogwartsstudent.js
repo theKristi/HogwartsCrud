@@ -2,10 +2,9 @@ const mongoose = require('mongoose');
 
 const api = {};
 
-api.store = (HogwartsStudents) => (req, res) => 
-{
+
     
-    api.getAll = () => (req, res) => 
+    api.getAll = (HogwartsStudents) => (req, res) => 
     {
             HogwartsStudents.find((error, student) => 
             {
@@ -15,5 +14,5 @@ api.store = (HogwartsStudents) => (req, res) =>
             
             })
     }
-}
+
 module.exports = api

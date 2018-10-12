@@ -13,20 +13,24 @@
   "license": "MIT",
   "scripts": {
     "client": "cd client && npm start",
-    "server": "nodemon server.js",
+    "server": "nodemon ./services/server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "_moduleAliases": {
     "@root": ".",
-    "@HogwartsStudent": "./services/ HogwartsStudentAPI",
+    "@HogwartsStudent": "./services/HogwartsStudentAPI",
     "@HogwartsStudentModels": "./services/HogwartsStudentAPI/app/models",
     "@HogwartsStudentAPI": "./services/HogwartsStudentAPI/config/app.js",
     "@config": "./services/HogwartsStudentAPI/config/index.js"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "consign": "^0.1.6",
+    "cors": "^2.8.4",
     "express": "^4.16.2",
     "module-alias": "^2.1.0",
     "mongoose": "^5.3.2",
+    "morgan": "^1.9.1",
     "npm": "^6.4.1"
   },
   "devDependencies": {
