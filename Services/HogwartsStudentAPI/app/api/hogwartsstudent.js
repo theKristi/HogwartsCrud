@@ -4,14 +4,14 @@ const api = {};
 
 
     
-    api.getAll = (client) => (req, res) => 
+    api.getAll = (HogwartsStore) => (req, res) => 
     {
-    //const collection = client.db("WizardingWorld").collection("HogwartsStudents");
-   
-      let myres=client.find();
-      console.log(myres);
-
-      return true;
+      let all=HogwartsStore.find({});
+      console.log("Inside getAll: "+ all._collection.collection.collection);
+     
+        //res.status(200).json(all);
+        return true;
+      
 
     }
 

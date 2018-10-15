@@ -1,5 +1,5 @@
 const mongoose = require('mongoose'),
-	  StudentModel = require('@HogwartsStudentModels/HogwartsStudent');
+	  StudentModel = require('@HogwartsStudentModels/HogwartsStore');
      
 	  
 const models = {
