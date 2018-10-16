@@ -6,11 +6,10 @@ const api = {};
     
     api.getAll = (HogwartsStore) => (req, res) => 
     {
-      let all=HogwartsStore.find({});
-      console.log("Inside getAll: "+ all._collection.collection.collection);
-     
-        //res.status(200).json(all);
-        return true;
+        HogwartsStore.find({}, (error, students) => {
+			if(error) throw error;
+			res.status(200).json(students);
+		});
       
 
     }
