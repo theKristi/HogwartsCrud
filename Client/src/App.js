@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './App.css';
 import NavBar from './Components/NavBar.js';
+import Table from './Components/Table.js';
 
 class App extends Component {
   state = {
@@ -16,18 +17,18 @@ class App extends Component {
   }
 
   callApi = async () => {
-    const response = await fetch('/api/hello');
+    const response = await fetch('/api//v1/getAll');
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
-
+    console.log("body:"+body)
     return body;
   };
   render() {
     return (
       <div className="App">
         <NavBar/>
-        <p className="App-intro">{this.state.response}</p>
+        <Table data={this.response}/>
       </div>
     );
   }
