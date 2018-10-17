@@ -7,28 +7,31 @@ import Table from './Components/Table.js';
 
 class App extends Component {
   state = {
-    response: ''
+    data:[],
   };
 
   componentDidMount() {
+    console.log("in componentDidMount");
     this.callApi()
-      .then(res => this.setState({ response: res.express }))
+      .then(res => this.setState({ data: res }))
       .catch(err => console.log(err));
   }
 
-  callApi = async () => {
+callApi = async () => {
+  console.log("calling");
     const response = await fetch('/api//v1/getAll');
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
-    console.log("body:"+body)
+   console.log("got response:"+Object.keys(body[0]));
     return body;
   };
+
   render() {
     return (
       <div className="App">
         <NavBar/>
-        <Table data={this.response}/>
+       <Table data={this.state.data} />
       </div>
     );
   }
