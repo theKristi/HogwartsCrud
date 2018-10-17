@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 
-class Table extends Component {
-   
-    render(){
-       return( <div className="container">
+const Table=(props)=> {
+    
+    let first=props.data[0];
+    //let keys=Object.keys(first);
+    console.log(first);
+    console.log(first["Index"]);
+       return( 
+       <div className="container">
+        <p>look at props</p>
             <table>
                 <thead></thead>
                 <tbody></tbody>
@@ -11,5 +16,5 @@ class Table extends Component {
         </div>);
     }
     
-}
+
 export default Table;
