@@ -1,27 +1,45 @@
 import React, { Component } from 'react';
 
-const Table=(props)=> {
+const Table = (props) => {
     
     let contents;
-    if(props.data.length==0){
+    const getDisplayableKeys=(dataElement, noDisplay)=>{
+        let keys = Object.keys(dataElement).filter(k=>noDisplay.indexOf(k)==-1);
+        return keys;
+    }
+    const generateHeader=(props)=>{
+        let keys=getDisplayableKeys(props.data[0], props.noDisplay)
+
+        return <tr>{keys.map((key) => { return <th>{key}</th> })}</tr>;
+
+    }
+    const generateBody=(data)=>{
+        let keys=getDisplayableKeys(props.data[0], props.noDisplay)
+        return data.map((element)=>{
+            return <tr>{keys.map((key)=>{
+            return <td>{element[key]}</td>
+        }) }</tr>
+    })//element map
+        
+    }
+    if (props.data.length == 0) {
         console.log("no data..")
-        contents=<p>Data is loading...</p>
+        contents = <p>Data is loading...</p>
     }
-    else{
+    else {
         //console.log(props.data[0]);
-        let keys=Object.keys(props.data[0]);
-    let header=keys.map((key)=>{return <th>{key}</th>});
-        contents=<table>
-                <thead>{header}</thead>
-                <tbody></tbody>
-            </table>
+        
+        contents = <table className="table table-bordered">
+            <thead>{generateHeader(props)}</thead>
+            <tbody>{generateBody(props.data)}</tbody>
+        </table>
     }
-       return( 
-       <div className="container">
-    
-        {contents}
+    return (
+        <div className="container">
+
+            {contents}
         </div>);
-    }
-    
+}
+
 
 export default Table;

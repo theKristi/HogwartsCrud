@@ -8,6 +8,7 @@ import Table from './Components/Table.js';
 class App extends Component {
   state = {
     data:[],
+    noDisplay:["_id"]
   };
 
   componentDidMount() {
@@ -31,7 +32,7 @@ callApi = async () => {
     return (
       <div className="App">
         <NavBar/>
-       <Table data={this.state.data} />
+       <Table {...this.state} />
       </div>
     );
   }
