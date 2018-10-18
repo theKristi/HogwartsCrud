@@ -14,5 +14,12 @@ const api = {};
       
 
     }
+    api.addStudent=(HogwartsStore, toadd)=> (req, res) =>
+    {
+        HogwartsStore.InsertOne(toadd,(error,message)=>{
+            if(error) throw error;
+            res.status(200).json(message);
+        })
+    }
 
 module.exports = api
