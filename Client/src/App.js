@@ -11,19 +11,19 @@ class App extends Component {
   };
 
   componentDidMount() {
-    console.log("in componentDidMount");
+    
     this.callApi()
       .then(res => this.setState({ data: res }))
       .catch(err => console.log(err));
   }
 
 callApi = async () => {
-  console.log("calling");
+ 
     const response = await fetch('/api//v1/getAll');
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
-   console.log("got response:"+Object.keys(body[0]));
+  
     return body;
   };
 

@@ -2,17 +2,24 @@ import React, { Component } from 'react';
 
 const Table=(props)=> {
     
-    let first=props.data[0];
-    //let keys=Object.keys(first);
-    console.log(first);
-    console.log(first["Index"]);
-       return( 
-       <div className="container">
-        <p>look at props</p>
-            <table>
-                <thead></thead>
+    let contents;
+    if(props.data.length==0){
+        console.log("no data..")
+        contents=<p>Data is loading...</p>
+    }
+    else{
+        //console.log(props.data[0]);
+        let keys=Object.keys(props.data[0]);
+    let header=keys.map((key)=>{return <th>{key}</th>});
+        contents=<table>
+                <thead>{header}</thead>
                 <tbody></tbody>
             </table>
+    }
+       return( 
+       <div className="container">
+    
+        {contents}
         </div>);
     }
     
