@@ -3,22 +3,22 @@ import React from 'react';
 const Table = (props) => {
     
     let contents;
-    const getDisplayableKeys=(dataElement, noDisplay)=>{
+    const getDisplayableHeaders=(dataElement, noDisplay)=>{
         let keys = Object.keys(dataElement).filter(k=>noDisplay.indexOf(k)===-1);
         return keys;
     }
     const generateHeader=(props)=>{
-        let keys=getDisplayableKeys(props.data[0], props.noDisplay)
-        return <tr>{keys.map(key => { return <th>{key}</th> })}</tr>;
+        let headers=getDisplayableHeaders(props.data[0], props.noDisplay)
+        return <tr>{headers.map(header => { return <th key={header}>{header}</th> })}</tr>;
 
     }
     const generateBody=(data)=>{
-        let keys=getDisplayableKeys(props.data[0], props.noDisplay)
+        let properties=getDisplayableHeaders(props.data[0], props.noDisplay)
         return data.map((element)=>{
-            return <tr>{keys.map(key=>{
-            return <td>{element[key]}</td>
+            return <tr key={element._id}>{properties.map(property=>{
+            return <td key={element._id+property}>{element[property]}</td>
         }) }</tr>
-    })//element map
+    })//element map 
         
     }
     if (props.data.length === 0) {
