@@ -4,11 +4,12 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './App.css';
 import NavBar from './Components/NavBar.js';
 import Table from './Components/Table.js';
+import Button from "./Components/AddStudent.js" 
 
 class App extends Component {
   state = {
     data:[],
-    noDisplay:["_id"]
+    noDisplay:["_id","__v"]
   };
 
   componentDidMount() {
@@ -32,7 +33,8 @@ callApi = async () => {
     return (
       <div className="App">
         <NavBar/>
-       <Table {...this.state} />
+        <Button/>
+        <Table {...this.state} />
       </div>
     );
   }

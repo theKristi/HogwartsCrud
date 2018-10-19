@@ -12,17 +12,7 @@ const Schema= mongoose.Schema({
     House: {
       type: String,
       required: true
-    },
-    
-    index: {
-      type: Number,
-      required: true
-    },
-    
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-     
-    },
+    }
     
     
 });

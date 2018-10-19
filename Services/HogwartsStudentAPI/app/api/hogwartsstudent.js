@@ -14,12 +14,23 @@ const api = {};
       
 
     }
-    api.addStudent=(HogwartsStore, toadd)=> (req, res) =>
+    api.addStudent=(HogwartsStudent)=> (req, res) =>
     {
-        HogwartsStore.InsertOne(toadd,(error,message)=>{
-            if(error) throw error;
-            res.status(200).json(message);
-        })
+       
+        if (!req.body.FirstName || !req.body.LastName|| !req.body.House) res.json({ success: false, message: 'Please, pass an firstname, lastname, and house.' });
+        else {
+            const student=new HogwartsStudent({
+                FirstName:req.body.FirstName,
+                LastName:req.body.LastName,
+                House: req.body.House
+                });
+            
+                student.save(error=>{
+                        if(error) throw error;
+                        res.json({ success: true, message: 'Student created successfully' });
+                        });
+        }
+       
     }
 
 module.exports = api
