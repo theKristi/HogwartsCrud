@@ -6,9 +6,10 @@ class Modal extends Component {
     this.state={
       FirstName:"",
       LastName:"",
-      House:""
+      House:"Gryffindor"
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   callApi=async()=>{
     const reqbody=JSON.stringify(this.state)
@@ -25,8 +26,9 @@ class Modal extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    callApi.then(res => alert("Student Created Successfully"))
+    this.callApi().then(res => alert(res.message))
     .catch(err => console.log(err));
+    //console.log(Object.keys(this));
     
   }
   handleInputChange(event) {
@@ -39,12 +41,13 @@ class Modal extends Component {
     });
   }
   render(){
-   return<div> <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+   return <div> 
+  <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addStudent">
     Add Student
   </button>
   
 
-  <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal fade" id="addStudent" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div className="modal-dialog" role="document">
       <div className="modal-content">
         <div className="modal-header">
@@ -76,7 +79,7 @@ class Modal extends Component {
         </div>
         <div className="modal-footer">
           <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" className="btn btn-primary">Save</button>
+          <button type="submit" className="btn btn-primary" data-dismiss="modal">Save</button>
         </div>
         </form>
       </div>

@@ -16,7 +16,7 @@ const api = {};
     }
     api.addStudent=(HogwartsStudent)=> (req, res) =>
     {
-       
+        console.log("creating student:"+ req.body.House);
         if (!req.body.FirstName || !req.body.LastName|| !req.body.House) res.json({ success: false, message: 'Please, pass an firstname, lastname, and house.' });
         else {
             const student=new HogwartsStudent({
@@ -24,7 +24,7 @@ const api = {};
                 LastName:req.body.LastName,
                 House: req.body.House
                 });
-            
+                
                 student.save(error=>{
                         if(error) throw error;
                         res.json({ success: true, message: 'Student created successfully' });

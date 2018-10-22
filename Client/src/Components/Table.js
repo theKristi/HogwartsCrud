@@ -21,6 +21,7 @@ const Table = (props) => {
     })//element map 
         
     }
+  
     if (props.data.length === 0) {
      
         contents = <p>Data is loading...</p>
