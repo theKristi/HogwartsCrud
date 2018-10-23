@@ -25,6 +25,7 @@ const Table = (props) => {
     if (props.data.length === 0) {
      
         contents = <p>Data is loading...</p>
+        props.dataHandler.getAll();
     }
     else {
         contents = <table className="table table-bordered">

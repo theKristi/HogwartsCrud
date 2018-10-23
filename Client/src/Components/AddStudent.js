@@ -28,7 +28,7 @@ class Modal extends Component {
     event.preventDefault();
     this.callApi().then(res => alert(res.message))
     .catch(err => console.log(err));
-    //console.log(Object.keys(this));
+    this.props.dataHandler.getAll();
     
   }
   handleInputChange(event) {
@@ -79,7 +79,7 @@ class Modal extends Component {
         </div>
         <div className="modal-footer">
           <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" className="btn btn-primary" data-dismiss="modal">Save</button>
+          <button type="submit" className="btn btn-primary" >Save</button>
         </div>
         </form>
       </div>
