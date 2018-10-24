@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'react-bootstrap/dist/react-bootstrap.min.js';
 import './App.css';
 import NavBar from './Components/NavBar.js';
 import Table from './Components/Table.js';

@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
+import Button from 'react-bootstrap/lib/Button';
+import Form from 'react-bootstrap/lib/Form';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import FormLabel from 'react-bootstrap/lib/FormLabel';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import Modal from 'react-bootstrap/lib/Modal';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
+import Popover from 'react-bootstrap/lib/Popover';
 
-class Modal extends Component {
+class AddStudent extends Component {
   constructor(props){
     super(props);
     this.state={
@@ -11,23 +20,10 @@ class Modal extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  callApi=async()=>{
-    const reqbody=JSON.stringify(this.state)
-    const response = await fetch('/api//v1/addStudent',{method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: reqbody
-  });
-  const body=await response.json();
-    if (response.status !== 200) throw Error(body.message);
-    return body;
-  }
+  
   handleSubmit(event) {
     event.preventDefault();
-    this.callApi().then(res => alert(res.message))
-    .catch(err => console.log(err));
+    this.props.dataHandler.addStudent(this.state);
     this.props.dataHandler.getAll();
     
   }
@@ -41,50 +37,62 @@ class Modal extends Component {
     });
   }
   render(){
-   return <div> 
-  <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addStudent">
-    Add Student
-  </button>
-  
+    const popover = (
+      <Popover id="modal-popover" title="popover">
+        very popover. such engagement
+      </Popover>
+    );
+    const tooltip = <Tooltip id="modal-tooltip">wow.</Tooltip>;
+   return <div>
+   <p>Click to get the full Modal experience!</p>
 
-  <div className="modal fade" id="addStudent" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div className="modal-dialog" role="document">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h5 className="modal-title" id="exampleModalLabel">Add Record</h5>
-          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form onSubmit={this.handleSubmit}>
-        <div className="modal-body">
-          <div className="form-group">
-            <label className="col-sm-2">First name:</label>
-            <input onChange={this.handleInputChange} className="col-sm-10" type="text" name="FirstName" />
-          </div>
-          <div className="form-group">
-            <label className="col-sm-2">Last name:</label>
-            <input onChange={this.handleInputChange} className="col-sm-10" type="text" name="LastName" />
-          </div>
-          <div className="form-group">
-            <label className="col-sm-2">House:</label>
-            <select onChange={this.handleInputChange} className=" col-sm-10" type="text" name="House" >
-                <option>Gryffindor</option>
-                <option>Slytherin</option>
-                <option>Ravenclaw</option>
-                <option>Hufflepuff</option>
-            </select>
-          </div>
-          
-        </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" className="btn btn-primary" >Save</button>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div></div>
+   <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
+     Launch demo modal
+   </Button>
+
+   <Modal show={this.state.show} onHide={this.handleClose}>
+     <Modal.Header closeButton>
+       <Modal.Title>Modal heading</Modal.Title>
+     </Modal.Header>
+     <Modal.Body>
+       <h4>Text in a modal</h4>
+       <p>
+         Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+       </p>
+
+       <h4>Popover in a modal</h4>
+       <p>
+         there is a{' '}
+         <OverlayTrigger overlay={popover}>
+           <a href="#popover">popover</a>
+         </OverlayTrigger>{' '}
+         here
+       </p>
+
+       <h4>Tooltips in a modal</h4>
+       <p>
+         there is a{' '}
+         <OverlayTrigger overlay={tooltip}>
+           <a href="#tooltip">tooltip</a>
+         </OverlayTrigger>{' '}
+         here
+       </p>
+
+       <hr />
+
+       <h4>Overflowing text to show scroll behavior</h4>
+       <p>
+         Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+         dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+         ac consectetur ac, vestibulum at eros.
+       </p>
+       
+     </Modal.Body>
+     <Modal.Footer>
+       <Button onClick={this.handleClose}>Close</Button>
+     </Modal.Footer>
+   </Modal>
+ </div>
   }
 }
-export default Modal;
+export default AddStudent;
