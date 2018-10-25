@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Form from 'react-bootstrap/lib/Form';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
-import FormLabel from 'react-bootstrap/lib/FormLabel';
+import Label from 'react-bootstrap/lib/Label';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Modal from 'react-bootstrap/lib/Modal';
-import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
-import Tooltip from 'react-bootstrap/lib/Tooltip';
-import Popover from 'react-bootstrap/lib/Popover';
 
 class AddStudent extends Component {
   constructor(props){
@@ -19,12 +16,30 @@ class AddStudent extends Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
+  }
+  
+  open() {
+    this.setState({showModal: true});
+  }
+  
+  close() {
+    this.setState({showModal: false});
   }
   
   handleSubmit(event) {
+    console.log("in submit")
     event.preventDefault();
-    this.props.dataHandler.addStudent(this.state);
-    this.props.dataHandler.getAll();
+    this.props.dataHandler.addStudent(this.state).then(res=>{
+      if(res.success){
+        this.close();
+        this.props.dataHandler.getAll();
+      }
+        
+    });
+  
+   
     
   }
   handleInputChange(event) {
@@ -37,62 +52,54 @@ class AddStudent extends Component {
     });
   }
   render(){
-    const popover = (
-      <Popover id="modal-popover" title="popover">
-        very popover. such engagement
-      </Popover>
-    );
-    const tooltip = <Tooltip id="modal-tooltip">wow.</Tooltip>;
+   
    return <div>
-   <p>Click to get the full Modal experience!</p>
-
-   <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
-     Launch demo modal
-   </Button>
-
-   <Modal show={this.state.show} onHide={this.handleClose}>
-     <Modal.Header closeButton>
-       <Modal.Title>Modal heading</Modal.Title>
-     </Modal.Header>
-     <Modal.Body>
-       <h4>Text in a modal</h4>
-       <p>
-         Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-       </p>
-
-       <h4>Popover in a modal</h4>
-       <p>
-         there is a{' '}
-         <OverlayTrigger overlay={popover}>
-           <a href="#popover">popover</a>
-         </OverlayTrigger>{' '}
-         here
-       </p>
-
-       <h4>Tooltips in a modal</h4>
-       <p>
-         there is a{' '}
-         <OverlayTrigger overlay={tooltip}>
-           <a href="#tooltip">tooltip</a>
-         </OverlayTrigger>{' '}
-         here
-       </p>
-
-       <hr />
-
-       <h4>Overflowing text to show scroll behavior</h4>
-       <p>
-         Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-         dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-         ac consectetur ac, vestibulum at eros.
-       </p>
-       
-     </Modal.Body>
-     <Modal.Footer>
-       <Button onClick={this.handleClose}>Close</Button>
-     </Modal.Footer>
-   </Modal>
- </div>
+        <Button bsStyle="primary" onClick={this.open}>Add Student</Button>
+        <div>
+          <Modal className="modal-container" 
+            show={this.state.showModal} 
+            onHide={this.close}
+            bsSize="lg" backdrop={false}
+            animation={false}
+            >
+  
+            <Modal.Header>
+              <Modal.Title>Add Student</Modal.Title>
+            </Modal.Header>
+  
+            <Form onSubmit={this.handleSubmit}>
+        <Modal.Body>
+          <FormGroup>
+            <Label>First name:</Label>
+            <FormControl onChange={this.handleInputChange}  type="text" name="FirstName" />
+          </FormGroup>
+          <FormGroup>
+            <Label>Last name:</Label>
+            <FormControl onChange={this.handleInputChange} type="text" name="LastName" />
+          </FormGroup>
+          <FormGroup>
+            <Label>House:</Label>
+            <select onChange={this.handleInputChange} type="text" name="House" >
+                <option>Gryffindor</option>
+                <option>Slytherin</option>
+                <option>Ravenclaw</option>
+                <option>Hufflepuff</option>
+            </select>
+          </FormGroup>
+          
+        </Modal.Body>
+        <Modal.Footer>
+            <Button onClick={this.close}>Close</Button>
+            <Button onClick={this.handleSubmit} bsStyle="primary">Save changes</Button>
+          </Modal.Footer>
+          </Form>
+  
+                    
+          </Modal> 
+          
+        </div>
+      </div>  
+ 
   }
 }
 export default AddStudent;

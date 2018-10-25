@@ -10,12 +10,9 @@ class DataHandler {
           .then(res=>this.props.refresh(res))
           .catch(err => console.log(err));
       }
-    addStudent(student){
-        this.ApiAddStudent(student).then(res => alert(res.message))
-        .catch(err => console.log(err));
-    }
-    ApiAddStudent=async(Adding)=>{
-        const reqbody=JSON.stringify(Adding)
+    
+    addStudent=async(student)=>{
+        const reqbody=JSON.stringify(student)
         const response = await fetch('/api//v1/addStudent',{method: 'POST',
         headers: {
           'Accept': 'application/json',
