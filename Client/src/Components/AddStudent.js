@@ -19,7 +19,7 @@ class AddStudent extends Component {
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
   }
-
+  
   open() {
     this.setState({showModal: true});
   }
