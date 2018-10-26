@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-
+import Button from 'react-bootstrap/lib/Button';
+import Form from 'react-bootstrap/lib/Form';
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import Label from 'react-bootstrap/lib/Label';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import Modal from 'react-bootstrap/lib/Modal';
 
 class AddStudent extends Component {
   constructor(props){
@@ -11,25 +16,30 @@ class AddStudent extends Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
   }
-  callApi=async()=>{
-    const reqbody=JSON.stringify(this.state)
-    const response = await fetch('/api//v1/addStudent',{method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: reqbody
-  });
-  const body=await response.json();
-    if (response.status !== 200) throw Error(body.message);
-    return body;
+  
+  open() {
+    this.setState({showModal: true});
   }
+  
+  close() {
+    this.setState({showModal: false});
+  }
+  
   handleSubmit(event) {
+    console.log("in submit")
     event.preventDefault();
-    this.callApi().then(res => alert(res.message))
-    .catch(err => console.log(err));
-    this.props.dataHandler.getAll();
+    this.props.dataHandler.addStudent(this.state).then(res=>{
+      if(res.success){
+        this.close();
+        this.props.dataHandler.getAll();
+      }
+        
+    });
+  
+   
     
   }
   handleInputChange(event) {
@@ -42,50 +52,54 @@ class AddStudent extends Component {
     });
   }
   render(){
-   return <div> 
-  <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addStudent">
-    Add Student
-  </button>
+   
+   return <div>
+        <Button bsStyle="primary" onClick={this.open}>Add Student</Button>
+        <div>
+          <Modal className="modal-container" 
+            show={this.state.showModal} 
+            onHide={this.close}
+            bsSize="lg" backdrop={false}
+            animation={false}
+            >
   
-
-  <div className="modal fade" id="addStudent" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div className="modal-dialog" role="document">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h5 className="modal-title" id="exampleModalLabel">Add Record</h5>
-          <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form onSubmit={this.handleSubmit}>
-        <div className="modal-body">
-          <div className="form-group">
-            <label className="col-sm-2">First name:</label>
-            <input onChange={this.handleInputChange} className="col-sm-10" type="text" name="FirstName" />
-          </div>
-          <div className="form-group">
-            <label className="col-sm-2">Last name:</label>
-            <input onChange={this.handleInputChange} className="col-sm-10" type="text" name="LastName" />
-          </div>
-          <div className="form-group">
-            <label className="col-sm-2">House:</label>
-            <select onChange={this.handleInputChange} className=" col-sm-10" type="text" name="House" >
+            <Modal.Header>
+              <Modal.Title>Add Student</Modal.Title>
+            </Modal.Header>
+  
+            <Form onSubmit={this.handleSubmit}>
+        <Modal.Body>
+          <FormGroup>
+            <Label>First name:</Label>
+            <FormControl onChange={this.handleInputChange}  type="text" name="FirstName" />
+          </FormGroup>
+          <FormGroup>
+            <Label>Last name:</Label>
+            <FormControl onChange={this.handleInputChange} type="text" name="LastName" />
+          </FormGroup>
+          <FormGroup>
+            <Label>House:</Label>
+            <select onChange={this.handleInputChange} type="text" name="House" >
                 <option>Gryffindor</option>
                 <option>Slytherin</option>
                 <option>Ravenclaw</option>
                 <option>Hufflepuff</option>
             </select>
-          </div>
+          </FormGroup>
+          
+        </Modal.Body>
+        <Modal.Footer>
+            <Button onClick={this.close}>Close</Button>
+            <Button onClick={this.handleSubmit} bsStyle="primary">Save changes</Button>
+          </Modal.Footer>
+          </Form>
+  
+                    
+          </Modal> 
           
         </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" className="btn btn-primary" >Save</button>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div></div>
+      </div>  
+ 
   }
 }
 export default AddStudent;
