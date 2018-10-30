@@ -17,7 +17,7 @@ const api = {};
     api.addStudent=(HogwartsStudent)=> (req, res) =>
     {
         console.log("creating student:"+ req.body.House);
-        if (!req.body.FirstName || !req.body.LastName|| !req.body.House) res.json({ success: false, message: 'Please, pass an firstname, lastname, and house.' });
+        if (!req.body.FirstName || !req.body.LastName|| !req.body.House) res.json({ success: false, message: 'Please, pass a firstname, lastname, and house.' });
         else {
             const student=new HogwartsStudent({
                 FirstName:req.body.FirstName,
@@ -31,6 +31,13 @@ const api = {};
                         });
         }
        
+    }
+    api.deleteStudent=(HogwartsStore)=>(req, res) =>
+    {
+        if(!req.body.id)res.json({ success: false, message: 'Please pass a vaild id' });
+        else{
+            HogwartsStore.deleteOne({_id: req.body.id});
+        }
     }
 
 module.exports = api
