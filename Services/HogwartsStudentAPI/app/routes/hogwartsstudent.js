@@ -10,6 +10,8 @@ const config = require('@config'),
 			  .post(api.addStudent(models.HogwartsStudent))
 		   app.get('/api/hello', (req, res) => {
 			res.send({ express: 'Hello! Hogwarts is waiting.' });
-		   });  
+		   });
+		   app.route('api/v1/deletStudent')
+		   	  .post(api.deleteStudent(models.HogwartsStudent))  
 		   
 	   }
