@@ -1,2 +1,0 @@
-web: node Services/server.js
-web: cd Client && npm start
