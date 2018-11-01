@@ -5,10 +5,10 @@ const config = require('@config'),
 		   const api = app.HogwartsStudentAPI.app.api.hogwartsstudent;
 
 		   app.route('/api/v1/getAll')
-			  .get("*",api.getAll(models.HogwartsStudent, app.get('hogwartssecret')));
+			  .get(api.getAll(models.HogwartsStudent, app.get('hogwartssecret')));
 		   app.route('/api/v1/addStudent')
 			  .post(api.addStudent(models.HogwartsStudent))
-		   app.get("*",'/api/hello', (req, res) => {
+		   app.get('/api/hello', (req, res) => {
 			res.send({ express: 'Hello! Hogwarts is waiting.' });
 		   });  
 		   
