@@ -9,7 +9,7 @@ const express = require('express'),
 	  path=require('path'),
 	  database = require('./database')(mongoose, config);
 	  
-	  app.use(express.static(path.join(__dirname, "client", "build")))
+	  app.use(express.static(path.join(__dirname, "Client", "build")))
 
 	  app.use(express.static('.'));
 	  app.use(bodyParser.urlencoded({extended: true}));
