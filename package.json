@@ -16,7 +16,7 @@
     "server": "nodemon ./services/server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "start": "node ./services/server.js",
-    "heroku-postbuild": "cd Client && npm install --only=dev && npm install && npm run build"
+    "heroku-postbuild": "cd Client && npm install && npm run build"
   },
   "engines": {
     "node": "8.12.0"
