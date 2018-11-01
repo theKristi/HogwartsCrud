@@ -15,7 +15,7 @@
     "client": "cd Client && npm start",
     "server": "nodemon ./services/server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "start": "node ./services/server.js",
+    "start": "node ./Services/server.js",
     "heroku-postbuild": "cd Client && npm install && npm run build"
   },
   "engines": {
