@@ -23,10 +23,10 @@
   },
   "_moduleAliases": {
     "@root": ".",
-    "@HogwartsStudent": "./services/HogwartsStudentAPI",
-    "@HogwartsStudentModels": "./services/HogwartsStudentAPI/app/models",
-    "@HogwartsStudentAPI": "./services/HogwartsStudentAPI/config/app.js",
-    "@config": "./services/HogwartsStudentAPI/config/index.js"
+    "@HogwartsStudent": "./Services/HogwartsStudentAPI",
+    "@HogwartsStudentModels": "./Services/HogwartsStudentAPI/app/models",
+    "@HogwartsStudentAPI": "./Services/HogwartsStudentAPI/config/app.js",
+    "@config": "./Services/HogwartsStudentAPI/config/index.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
