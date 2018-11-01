@@ -6,7 +6,7 @@ const express = require('express'),
 	  consign = require('consign'),
       cors = require('cors'),
       config = require('./index'),
-    
+	  path=require('path'),
 	  database = require('./database')(mongoose, config);
 	  
 	  app.use(express.static(path.join(__dirname, "client", "build")))

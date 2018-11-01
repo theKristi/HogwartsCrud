@@ -1,5 +1,7 @@
 const config = require('@config'),
-	   models = require('@HogwartsStudent/app/setup');
+	   models = require('@HogwartsStudent/app/setup'),
+	   path = require("path");
+
 	   
 	   module.exports = (app) => {
 		   const api = app.HogwartsStudentAPI.app.api.hogwartsstudent;
