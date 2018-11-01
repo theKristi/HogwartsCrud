@@ -9,7 +9,8 @@ const api = {};
         HogwartsStore.find({}, (error, students) => {
             if(error) throw error;
             console.log("getting all students");
-			res.status(200).json(students);
+            res.status(200).json(students);
+           
 		});
       
 
