@@ -8,8 +8,8 @@ const config = require('@config'),
 			  .get(api.getAll(models.HogwartsStudent, app.get('hogwartssecret')));
 		   app.route('/api/v1/addStudent')
 			  .post(api.addStudent(models.HogwartsStudent))
-		   app.get('/api/hello', (req, res) => {
-			res.send({ express: 'Hello! Hogwarts is waiting.' });
-		   });  
 		   
+		   app.get("*", (req, res) => {
+			res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+		});
 	   }
