@@ -12,6 +12,8 @@ const config = require('@config'),
 			  .post(api.addStudent(models.HogwartsStudent))
 		   
 		   app.get("*", (req, res) => {
-			res.sendFile(path.join("../../",__dirname, "Client", "build", "index.html"));
+			   const root=__dirname.substr(0,__dirname.indexOf("Services"));
+			   console.log(root);
+			res.sendFile(path.join(root, "Client", "build", "index.html"));
 		});
 	   }
