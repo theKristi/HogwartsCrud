@@ -11,7 +11,7 @@ const config = require('@config'),
 		   app.route('/api/v1/addStudent')
 			  .post(api.addStudent(models.HogwartsStudent))
 		   
-		   app.get("/", (req, res) => {
+		   app.get("*", (req, res) => {
 			res.sendFile(path.join(__dirname, "Client", "build", "index.html"));
 		});
 	   }
