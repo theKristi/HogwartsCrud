@@ -13,7 +13,7 @@ class DataHandler {
     
     addStudent=async(student)=>{
         const reqbody=JSON.stringify(student)
-        const response = await fetch('/api//v1/addStudent',{method: 'POST',
+        const response = await fetch('/api/v1/addStudent',{method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ class DataHandler {
       }
     ApiGetAll = async () => {
      
-        const response = await fetch('/api//v1/getAll');
+        const response = await fetch('/api/v1/getAll');
         const body = await response.json();
     
         if (response.status !== 200) throw Error(body.message);
