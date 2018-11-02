@@ -8,8 +8,8 @@ const express = require('express'),
       config = require('./index'),
 	  path=require('path'),
 	  database = require('./database')(mongoose, config);
-	  
-	  app.use(express.static(path.join(__dirname, "Client", "build")))
+	  const root=__dirname.substr(0,__dirname.indexOf("Services"));
+	  app.use(express.static(path.join(root, "Client", "build")));
 
 	  app.use(express.static('.'));
 	  app.use(bodyParser.urlencoded({extended: true}));
