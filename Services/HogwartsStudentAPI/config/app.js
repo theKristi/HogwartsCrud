@@ -20,7 +20,7 @@ const express = require('express'),
 	  
 	  app.set('hogwartssecret', config.secret);
 	  
-	  consign({cwd: 'services'})
+	  consign({cwd: 'Services'})
 	  .include('HogwartsStudentAPI/app/setup')
 	  .then('HogwartsStudentAPI/app/api')
 	  .then('HogwartsStudentAPI/app/routes')
