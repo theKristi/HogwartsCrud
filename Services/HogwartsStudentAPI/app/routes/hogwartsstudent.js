@@ -10,7 +10,7 @@ const config = require('@config'),
 			  .get(api.getAll(models.HogwartsStudent, app.get('hogwartssecret')));
 		   app.route('/api/v1/addStudent')
 			  .post(api.addStudent(models.HogwartsStudent));
-		   app.route('api/v1/deletStudent')
+		   app.route('/api/v1/deleteStudent')
 		   	  .post(api.deleteStudent(models.HogwartsStudent));
 		   app.get("*", (req, res) => {
 			   const root=__dirname.substr(0,__dirname.indexOf("Services"));
