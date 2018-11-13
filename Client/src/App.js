@@ -9,7 +9,7 @@ import DataHandler from "./Handlers/DataHandler.js"
 class App extends Component {
   refreshData=res => {
     this.setState({ data: res });
-    console.log("refreshing...")
+    console.log("refreshing data123...")
   } 
   dh=new DataHandler({ refresh: this.refreshData});
    

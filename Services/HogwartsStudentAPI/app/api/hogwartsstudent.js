@@ -35,14 +35,17 @@ const api = {};
     }
     api.deleteStudent=(HogwartsStore)=>(req, res) =>
     {
-        console.log("in delete");
+       
         if(!req.body.id)res.json({ success: false, message: 'Please pass a vaild id' });
         else{
-            HogwartsStore.deleteOne({_id: req.body.id},error=>{
-                
-            });
+            console.log(req.body.id);
+            HogwartsStore.deleteOne({_id: req.body.id},(error, remove)=>{
+                if(error) throw error;
+                res.json({ success: true, message: remove });
+                });
+            }
 
-        }
+        
     }
 
 module.exports = api
