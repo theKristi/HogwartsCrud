@@ -11,12 +11,14 @@ class DataHandler {
           .catch(err => console.log(err));
       }
     deleteStudent=async(id)=>{
+      const reqbody=JSON.stringify({"id":id})
+      //console.log("fetching json: "+reqbody)
       const response = await fetch('/api/v1/deleteStudent',{method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: {"id":id}
+      body: reqbody
     });
     const body=await response.json();
     if (response.status !== 200) throw Error(body.message);

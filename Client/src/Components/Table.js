@@ -27,10 +27,10 @@ const Table = (props) => {
         
     }
     const handleDelete=(id)=>{
-        console.log("keys: "+Object.keys(props));
+   
         props.dataHandler.deleteStudent(id).then(res=>{
             if(res.success)
-              props.dh.getAll();
+              props.dataHandler.getAll();
             });
     }
 

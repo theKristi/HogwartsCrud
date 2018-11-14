@@ -29,7 +29,7 @@ class AddStudent extends Component {
   }
   
   handleSubmit(event) {
-    console.log("in submit")
+    //console.log("in submit")
     event.preventDefault();
     this.props.dataHandler.addStudent(this.state).then(res=>{
       if(res.success){
