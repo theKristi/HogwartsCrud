@@ -9,7 +9,8 @@ const api = {};
         HogwartsStore.find({}, (error, students) => {
             if(error) throw error;
             console.log("getting all students");
-			res.status(200).json(students);
+            res.status(200).json(students);
+           
 		});
       
 
@@ -17,7 +18,7 @@ const api = {};
     api.addStudent=(HogwartsStudent)=> (req, res) =>
     {
         console.log("creating student:"+ req.body.House);
-        if (!req.body.FirstName || !req.body.LastName|| !req.body.House) res.json({ success: false, message: 'Please, pass an firstname, lastname, and house.' });
+        if (!req.body.FirstName || !req.body.LastName|| !req.body.House) res.json({ success: false, message: 'Please, pass a firstname, lastname, and house.' });
         else {
             const student=new HogwartsStudent({
                 FirstName:req.body.FirstName,
@@ -31,6 +32,20 @@ const api = {};
                         });
         }
        
+    }
+    api.deleteStudent=(HogwartsStore)=>(req, res) =>
+    {
+       
+        if(!req.body.id)res.json({ success: false, message: 'Please pass a vaild id' });
+        else{
+            console.log(req.body.id);
+            HogwartsStore.deleteOne({_id: req.body.id},(error, remove)=>{
+                if(error) throw error;
+                res.json({ success: true, message: remove });
+                });
+            }
+
+        
     }
 
 module.exports = api
