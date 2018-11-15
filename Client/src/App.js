@@ -22,7 +22,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App col-lg-12">
+      <div className="App">
         <NavBar/>
         <Button dataHandler={this.state.dataHandler}/>
         <Table {...this.state} />

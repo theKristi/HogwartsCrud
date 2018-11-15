@@ -1,10 +1,22 @@
+*, :after, :before{
+  box-sizing: content-box;
+}
+.modal-dialog, :after, :before{
+  box-sizing: border-box !important;
+}
 .App {
   text-align: center;
   
 }
-.primary{
-  padding: 10px;
+.btn-primary{
+  margin: 10px;
 }
+.navbar-header {
+  float: left;
+  text-align: center;
+  width: 100%;
+}
+.navbar-brand {float:none;}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
