@@ -40,13 +40,13 @@ const Table = (props) => {
         props.dataHandler.getAll();
     }
     else {
-        contents = <table className="table table-bordered">
+        contents = <table className="table table-bordered col-lg-12">
             <thead>{generateHeader(props)}</thead>
             <tbody>{generateBody(props.data)}</tbody>
         </table>
     }
     return (
-        <div className="container col-lg-6">
+        <div className="container col-lg-6 col-sm-10">
             {contents}
         </div>);
 }
