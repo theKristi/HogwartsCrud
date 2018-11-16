@@ -1,8 +1,8 @@
-*, :after, :before{
-  box-sizing: content-box;
-}
-.modal-dialog, :after, :before{
-  box-sizing: border-box !important;
+
+@media only screen and (max-width : 480px) {
+  *, :after, :before{
+    width: fit-content;
+  }
 }
 .App {
   text-align: center;
