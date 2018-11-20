@@ -3,8 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import NavBar from './Components/NavBar.js';
 import Table from './Components/Table.js';
-import Button from "./Components/AddStudent.js" 
+import Button from "./Components/Modals/AddStudent.js" 
 import DataHandler from "./Handlers/DataHandler.js"
+import Modal from "./Components/Modals/ConfirmationModal"
 
 class App extends Component {
   refreshData = res => {
