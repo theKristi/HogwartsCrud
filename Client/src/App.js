@@ -7,16 +7,21 @@ import Button from "./Components/AddStudent.js"
 import DataHandler from "./Handlers/DataHandler.js"
 
 class App extends Component {
-  refreshData=res => {
+  refreshData = res => {
     this.setState({ data: res });
     console.log("refreshing data...")
+  }
+  refreshToDelete = student => {
+    this.setState({toDelete:student});
   } 
   dh=new DataHandler({ refresh: this.refreshData});
    
   state = {
     data:[],
     noDisplay:["_id","__v"],
-    dataHandler:this.dh
+    dataHandler:this.dh,
+    refreshDelete: this.refreshToDelete,
+    toDelete:null
   };
 
 
